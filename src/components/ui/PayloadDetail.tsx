@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CalendarClock, Download, Share2, Bookmark, Clock, FileText, Tag } from 'lucide-react';
+import { CalendarClock, Download, Share2, Bookmark, Clock, FileText, Tag, ExternalLink } from 'lucide-react';
 import { PayloadGuide } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -12,6 +12,7 @@ interface PayloadDetailProps {
 
 const PayloadDetail = ({ guide }: PayloadDetailProps) => {
   const [bookmarked, setBookmarked] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
 
   const handleBookmark = () => {
@@ -48,12 +49,44 @@ const PayloadDetail = ({ guide }: PayloadDetailProps) => {
   };
 
   const handleDownload = () => {
+    if (!guide.fileUrl) {
+      toast({
+        title: "Download error",
+        description: "File not available for download",
+        variant: "destructive",
+        duration: 3000,
+      });
+      return;
+    }
+
+    setDownloading(true);
+    
     toast({
       title: "Download started",
       description: `${guide.title} is downloading...`,
       duration: 3000,
     });
-    // In a real app, this would trigger the actual file download
+
+    // Create an anchor element and trigger download
+    const link = document.createElement('a');
+    link.href = guide.fileUrl;
+    link.setAttribute('download', `${guide.title.replace(/\s+/g, '_')}.${guide.fileType?.toLowerCase()}`);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+    
+    // For browsers that require the link to be in the document
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Reset downloading state after a short delay
+    setTimeout(() => setDownloading(false), 1000);
+  };
+
+  const handleExternalView = () => {
+    if (guide.externalUrl) {
+      window.open(guide.externalUrl, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
@@ -94,11 +127,23 @@ const PayloadDetail = ({ guide }: PayloadDetailProps) => {
             <div className="flex flex-wrap items-center gap-3">
               <Button 
                 onClick={handleDownload}
+                disabled={downloading || !guide.fileUrl}
                 className="bg-accent hover:bg-accent/90 text-white rounded-full px-6"
               >
                 <Download className="h-4 w-4 mr-2" />
-                Download Guide
+                {downloading ? 'Downloading...' : 'Download Guide'}
               </Button>
+              
+              {guide.externalUrl && (
+                <Button 
+                  variant="outline" 
+                  onClick={handleExternalView}
+                  className="rounded-full bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  View on {guide.company}
+                </Button>
+              )}
               
               <Button 
                 variant="outline" 
@@ -244,7 +289,7 @@ const PayloadDetail = ({ guide }: PayloadDetailProps) => {
                   <FileText className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="text-sm text-muted-foreground">File Type</p>
-                    <p className="font-medium">{guide.fileType || 'PDF'}</p>
+                    <p className="font-medium">{guide.fileType}</p>
                   </div>
                 </div>
                 
@@ -252,7 +297,7 @@ const PayloadDetail = ({ guide }: PayloadDetailProps) => {
                   <Download className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="text-sm text-muted-foreground">File Size</p>
-                    <p className="font-medium">{guide.fileSize || '10.5 MB'}</p>
+                    <p className="font-medium">{guide.fileSize}</p>
                   </div>
                 </div>
               </div>

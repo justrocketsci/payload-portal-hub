@@ -6,14 +6,16 @@ export const mockPayloadGuides: PayloadGuide[] = [
     id: '1',
     title: 'Falcon 9 Payload User\'s Guide',
     company: 'SpaceX',
-    description: 'This user guide provides information for users of the Falcon 9 launch vehicle.',
+    description: 'This user guide provides technical information for customers launching payloads on Falcon 9, including vehicle specifications, performance capabilities, and more.',
     thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
     category: 'Launch Vehicles',
     tags: ['falcon 9', 'spacex', 'orbital', 'commercial'],
     publishedDate: '2023-04-15',
     lastUpdated: '2023-09-10',
+    fileUrl: 'https://www.spacex.com/media/falcon-users-guide-2021-09.pdf',
     fileType: 'PDF',
-    fileSize: '12.4 MB'
+    fileSize: '8.1 MB',
+    externalUrl: 'https://www.spacex.com/vehicles/falcon-9/'
   },
   {
     id: '2',
@@ -25,37 +27,58 @@ export const mockPayloadGuides: PayloadGuide[] = [
     tags: ['ariane', 'esa', 'europe', 'gto'],
     publishedDate: '2022-11-30',
     lastUpdated: '2023-07-22',
+    fileUrl: 'https://www.arianespace.com/wp-content/uploads/2022/09/Ariane-6-Users-Manual-Issue-2-Revision-0_May2021.pdf',
     fileType: 'PDF',
-    fileSize: '24.6 MB'
+    fileSize: '24.6 MB',
+    externalUrl: 'https://www.arianespace.com/vehicle/ariane-6/'
   },
   {
     id: '3',
+    title: 'Electron Payload User\'s Guide',
+    company: 'Rocket Lab',
+    description: 'Comprehensive guide for payload customers on the Electron launch vehicle, including mission profiles, environments, and interfaces.',
+    thumbnail: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80',
+    category: 'Launch Vehicles',
+    tags: ['electron', 'rocket lab', 'small satellite', 'leo'],
+    publishedDate: '2022-09-12',
+    lastUpdated: '2023-12-01',
+    fileUrl: 'https://www.rocketlabusa.com/assets/Uploads/Electron-Payload-Users-Guide-6.7.pdf',
+    fileType: 'PDF',
+    fileSize: '11.2 MB',
+    externalUrl: 'https://www.rocketlabusa.com/electron/'
+  },
+  {
+    id: '4',
     title: 'Dragon Spacecraft Payload User\'s Guide',
     company: 'SpaceX',
-    description: 'This document provides information on spacecraft systems, interfaces, and requirements for payload developers.',
+    description: 'This document provides information on Dragon spacecraft systems, interfaces, and requirements for payload developers.',
     thumbnail: 'https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
     category: 'Spacecraft',
     tags: ['dragon', 'spacex', 'cargo', 'iss'],
     publishedDate: '2023-01-05',
     lastUpdated: '2023-08-18',
+    fileUrl: 'https://www.spacex.com/media/dragon-spacecraft-users-guide-042020.pdf',
     fileType: 'PDF',
-    fileSize: '18.2 MB'
-  },
-  {
-    id: '4',
-    title: 'Electron Payload User\'s Guide',
-    company: 'Rocket Lab',
-    description: 'Details for users planning missions on Rocket Lab\'s Electron launch vehicle.',
-    thumbnail: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80',
-    category: 'Launch Vehicles',
-    tags: ['electron', 'rocket lab', 'small satellite', 'leo'],
-    publishedDate: '2022-09-12',
-    lastUpdated: '2023-06-30',
-    fileType: 'PDF',
-    fileSize: '9.7 MB'
+    fileSize: '18.2 MB',
+    externalUrl: 'https://www.spacex.com/vehicles/dragon/'
   },
   {
     id: '5',
+    title: 'Firefly Alpha Payload User\'s Guide',
+    company: 'Firefly Aerospace',
+    description: 'Detailed guide for the Firefly Alpha launch vehicle with mission planning information, payload integration guidelines, and more.',
+    thumbnail: 'https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80',
+    category: 'Launch Vehicles',
+    tags: ['firefly', 'alpha', 'small satellite', 'commercial'],
+    publishedDate: '2021-08-15',
+    lastUpdated: '2023-03-20',
+    fileUrl: 'https://firefly.com/wp-content/uploads/2022/04/Firefly-Alpha-Payload-Users-Guide.pdf',
+    fileType: 'PDF',
+    fileSize: '15.8 MB',
+    externalUrl: 'https://firefly.com/launch/'
+  },
+  {
+    id: '6',
     title: 'ISS Payload Integration Guide',
     company: 'NASA',
     description: 'Comprehensive information for integrating payloads with the International Space Station.',
@@ -64,21 +87,10 @@ export const mockPayloadGuides: PayloadGuide[] = [
     tags: ['iss', 'nasa', 'research', 'microgravity'],
     publishedDate: '2023-02-28',
     lastUpdated: '2023-05-15',
+    fileUrl: 'https://www.nasa.gov/sites/default/files/atoms/files/np-2015-05-022-jsc-iss-guide-2015-update-111015-508c.pdf',
     fileType: 'PDF',
-    fileSize: '32.1 MB'
-  },
-  {
-    id: '6',
-    title: 'Vega-C User\'s Manual',
-    company: 'Arianespace',
-    description: 'User manual for the Vega-C launch vehicle, covering performance, environments, and interfaces.',
-    thumbnail: 'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-    category: 'Launch Vehicles',
-    tags: ['vega', 'arianespace', 'europe', 'small satellite'],
-    publishedDate: '2022-12-10',
-    lastUpdated: '2023-09-01',
-    fileType: 'PDF',
-    fileSize: '15.8 MB'
+    fileSize: '32.1 MB',
+    externalUrl: 'https://www.nasa.gov/international-space-station/'
   }
 ];
 

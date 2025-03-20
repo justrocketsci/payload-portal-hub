@@ -8,9 +8,10 @@ export interface PayloadGuide {
   tags: string[];
   publishedDate: string;
   lastUpdated: string;
-  fileUrl?: string;
-  fileType?: string;
-  fileSize?: string;
+  fileUrl: string;  // Making fileUrl required now
+  fileType: string; // Making fileType required now
+  fileSize: string; // Making fileSize required now
+  externalUrl?: string; // New field for external links to guides
 }
 
 export interface Company {
