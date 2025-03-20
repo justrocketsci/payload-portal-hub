@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -10,6 +9,8 @@ import Footer from '@/components/layout/Footer';
 import PayloadCard from '@/components/ui/PayloadCard';
 import FadeIn from '@/components/animations/FadeIn';
 import SlideUp from '@/components/animations/SlideUp';
+import InlineAd from '@/components/ui/InlineAd';
+import SidebarAds from '@/components/ui/SidebarAds';
 import { fetchPayloadGuides, mockCompanies } from '@/lib/api';
 import { PayloadGuide } from '@/lib/types';
 
@@ -144,33 +145,45 @@ const Index = () => {
               ))
             )}
           </div>
+          
+          <div className="mt-12">
+            <InlineAd />
+          </div>
         </div>
       </section>
       
-      {/* Companies Section */}
+      {/* Companies Section with sidebar ad */}
       <section className="py-16">
         <div className="container-custom">
-          <FadeIn>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Trusted by Leading Space Companies</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                We aggregate payload guides from the most innovative companies in the space industry
-              </p>
-            </div>
-          </FadeIn>
-          
-          <div className="flex flex-wrap justify-center items-center gap-12">
-            {mockCompanies.map((company, index) => (
-              <FadeIn key={company.id} delay={index * 0.1}>
-                <div className="glass-card p-4 h-24 w-40 flex items-center justify-center">
-                  <img 
-                    src={company.logo} 
-                    alt={company.name}
-                    className="max-h-12 max-w-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                  />
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            <div className="lg:col-span-3">
+              <FadeIn>
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4">Trusted by Leading Space Companies</h2>
+                  <p className="text-muted-foreground max-w-2xl mx-auto">
+                    We aggregate payload guides from the most innovative companies in the space industry
+                  </p>
                 </div>
               </FadeIn>
-            ))}
+              
+              <div className="flex flex-wrap justify-center items-center gap-12">
+                {mockCompanies.map((company, index) => (
+                  <FadeIn key={company.id} delay={index * 0.1}>
+                    <div className="glass-card p-4 h-24 w-40 flex items-center justify-center">
+                      <img 
+                        src={company.logo} 
+                        alt={company.name}
+                        className="max-h-12 max-w-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      />
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+            
+            <div className="lg:col-span-1">
+              <SidebarAds />
+            </div>
           </div>
         </div>
       </section>
@@ -217,6 +230,10 @@ const Index = () => {
                 Access guides from anywhere in the world, at any time, securely and reliably.
               </p>
             </SlideUp>
+          </div>
+          
+          <div className="mt-12">
+            <InlineAd />
           </div>
         </div>
       </section>
