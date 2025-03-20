@@ -37,7 +37,7 @@ export const mockPayloadGuides: PayloadGuide[] = [
     title: 'Electron Payload User\'s Guide',
     company: 'Rocket Lab',
     description: 'Comprehensive guide for payload customers on the Electron launch vehicle, including mission profiles, environments, and interfaces.',
-    thumbnail: 'https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80',
+    thumbnail: '/rocket-lab-electron.jpg',
     category: 'Launch Vehicles',
     tags: ['electron', 'rocket lab', 'small satellite', 'leo'],
     publishedDate: '2022-09-12',
