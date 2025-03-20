@@ -1,4 +1,3 @@
-
 export interface PayloadGuide {
   id: string;
   title: string;
@@ -39,4 +38,16 @@ export interface FilterOptions {
     from: Date | null;
     to: Date | null;
   };
+}
+
+export interface AdData {
+  id: string;
+  imageUrl: string;
+  title: string;
+  description?: string;
+  companyName: string;
+  targetUrl: string;
+  size: 'small' | 'medium' | 'large';
+  position?: 'inline' | 'sidebar' | 'footer';
+  categories: string[];
 }
