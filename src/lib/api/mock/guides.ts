@@ -7,7 +7,7 @@ export const mockPayloadGuides: PayloadGuide[] = [
     title: 'Falcon 9 Payload User\'s Guide',
     company: 'SpaceX',
     description: 'This user guide provides technical information for customers launching payloads on Falcon 9, including vehicle specifications, performance capabilities, and more.',
-    thumbnail: 'https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    thumbnail: '/falcon-9.jpeg',
     category: 'Launch Vehicles',
     tags: ['falcon 9', 'spacex', 'orbital', 'commercial'],
     publishedDate: '2023-04-15',
