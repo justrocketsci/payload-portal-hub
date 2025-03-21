@@ -45,7 +45,7 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-4">Connect</h3>
             <div className="flex space-x-3">
               <motion.a
-                href="mailto:contact@payloadportal.com"
+                href="checkbacksoon---"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-secondary hover:bg-accent hover:text-white transition-all"
