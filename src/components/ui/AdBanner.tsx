@@ -1,7 +1,8 @@
 
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Star, Award, Megaphone } from 'lucide-react';
 import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 export interface AdProps {
   id: string;
@@ -16,10 +17,20 @@ export interface AdProps {
 
 const AdBanner = ({ ad }: { ad: AdProps }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { toast } = useToast();
   
   const handleAdClick = () => {
-    // In a real implementation, you'd log this click for analytics
+    // Log this click for analytics
     console.log(`Ad clicked: ${ad.id} - ${ad.title}`);
+    
+    // Show a toast notification
+    toast({
+      title: "Advertisement clicked",
+      description: `You clicked on an ad from ${ad.companyName}`,
+      duration: 3000,
+    });
+    
+    // Open the target URL in a new tab
     window.open(ad.targetUrl, '_blank', 'noopener,noreferrer');
   };
   
@@ -37,6 +48,18 @@ const AdBanner = ({ ad }: { ad: AdProps }) => {
     }
   };
   
+  // Choose an icon based on the ad category or size
+  const getAdIcon = () => {
+    switch (ad.size) {
+      case 'large':
+        return <Award className="h-3 w-3 text-accent" />;
+      case 'medium':
+        return <Star className="h-3 w-3 text-accent" />;
+      default:
+        return <Megaphone className="h-3 w-3 text-accent" />;
+    }
+  };
+  
   return (
     <motion.div
       className={`relative w-full rounded-lg bg-secondary/30 border border-border/50 overflow-hidden ${getSizeStyles()}`}
@@ -48,8 +71,9 @@ const AdBanner = ({ ad }: { ad: AdProps }) => {
       initial={{ opacity: 0.95 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="absolute top-1 right-1 text-xs text-muted-foreground bg-secondary px-1.5 py-0.5 rounded text-[10px]">
-        Ad
+      <div className="absolute top-1 right-1 text-xs text-muted-foreground bg-secondary px-1.5 py-0.5 rounded text-[10px] flex items-center gap-1">
+        {getAdIcon()}
+        <span>Ad</span>
       </div>
       
       <div className="flex h-full gap-3">

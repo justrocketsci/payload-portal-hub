@@ -56,5 +56,38 @@ export const mockAds: AdData[] = [
     size: 'small',
     position: 'sidebar',
     categories: ['services', 'launch']
+  },
+  {
+    id: 'ad6',
+    imageUrl: 'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+    title: 'Next-Gen Space Suits',
+    description: 'Revolutionary EVA suits designed for comfort and maximum mobility',
+    companyName: 'SpaceGear',
+    targetUrl: 'https://example.com/space-suits',
+    size: 'medium',
+    position: 'inline',
+    categories: ['equipment', 'astronauts']
+  },
+  {
+    id: 'ad7',
+    imageUrl: 'https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+    title: 'Orbital Debris Mitigation',
+    description: 'Solutions for tracking and removing space debris to protect your assets',
+    companyName: 'CleanOrbit',
+    targetUrl: 'https://example.com/debris-mitigation',
+    size: 'large',
+    position: 'sidebar',
+    categories: ['services', 'operations']
+  },
+  {
+    id: 'ad8',
+    imageUrl: 'https://images.unsplash.com/photo-1517976487492-5750f3195933?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+    title: 'Satellite Solar Arrays',
+    description: 'High-efficiency deployable solar panels for extended mission lifetimes',
+    companyName: 'SolarSpace',
+    targetUrl: 'https://example.com/space-solar',
+    size: 'medium',
+    position: 'footer',
+    categories: ['power', 'satellites']
   }
 ];

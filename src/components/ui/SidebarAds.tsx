@@ -5,9 +5,10 @@ import AdBanner from './AdBanner';
 
 interface SidebarAdsProps {
   category?: string;
+  className?: string;
 }
 
-const SidebarAds = ({ category }: SidebarAdsProps) => {
+const SidebarAds = ({ category, className = '' }: SidebarAdsProps) => {
   const { data: ads, isLoading } = useQuery({
     queryKey: ['ads', 'sidebar', category],
     queryFn: () => fetchAds(category, 'sidebar', 2),
@@ -18,8 +19,10 @@ const SidebarAds = ({ category }: SidebarAdsProps) => {
   }
 
   return (
-    <div className="space-y-4 p-4 rounded-lg">
-      <h3 className="text-sm font-medium text-muted-foreground">Sponsored</h3>
+    <div className={`space-y-4 ${className}`}>
+      <h3 className="text-sm font-medium text-muted-foreground flex items-center gap-1.5">
+        Sponsored
+      </h3>
       <div className="space-y-4">
         {ads.map(ad => (
           <AdBanner key={ad.id} ad={ad} />
