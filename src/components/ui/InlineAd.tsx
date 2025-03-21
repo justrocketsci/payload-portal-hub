@@ -19,8 +19,7 @@ const InlineAd = ({ category, className = '' }: InlineAdProps) => {
   }
 
   return (
-    <div className={`my-6 border-4 border-dashed border-red-400 p-4 rounded-lg ${className}`}>
-      <div className="text-xs text-red-500 font-bold mb-2">AD PLACEMENT (INLINE)</div>
+    <div className={`my-6 p-4 rounded-lg ${className}`}>
       <AdBanner ad={ads[0]} />
     </div>
   );

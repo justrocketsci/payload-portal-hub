@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, Menu, X, User } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
@@ -80,15 +80,6 @@ const Navbar = () => {
             aria-label="Search"
           >
             <Search className="h-5 w-5" />
-          </Button>
-          
-          <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full"
-            aria-label="Account"
-          >
-            <User className="h-5 w-5" />
           </Button>
 
           {/* Mobile menu button */}

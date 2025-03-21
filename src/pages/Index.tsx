@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -49,7 +50,7 @@ const Index = () => {
             
             <SlideUp delay={0.1}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
-                Your Universal Source for <span className="text-accent">Space Payload</span> Documentation
+                Your Universal Source for <span className="text-accent">Payload User Guides</span>
               </h1>
             </SlideUp>
             
@@ -159,7 +160,7 @@ const Index = () => {
             <div className="lg:col-span-3">
               <FadeIn>
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4">Trusted by Leading Space Companies</h2>
+                  <h2 className="text-3xl font-bold mb-4">Featuring Top Space Companies</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
                     We aggregate payload guides from the most innovative companies in the space industry
                   </p>
@@ -200,7 +201,7 @@ const Index = () => {
             </div>
           </FadeIn>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <SlideUp className="glass-card p-6" staggerIndex={0}>
               <div className="h-12 w-12 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-4">
                 <Search className="h-6 w-6" />
@@ -212,16 +213,6 @@ const Index = () => {
             </SlideUp>
             
             <SlideUp className="glass-card p-6" staggerIndex={1}>
-              <div className="h-12 w-12 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-4">
-                <Rocket className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-medium mb-2">Standardized Format</h3>
-              <p className="text-muted-foreground">
-                All guides follow a consistent structure making comparison and research more efficient.
-              </p>
-            </SlideUp>
-            
-            <SlideUp className="glass-card p-6" staggerIndex={2}>
               <div className="h-12 w-12 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-4">
                 <Globe className="h-6 w-6" />
               </div>

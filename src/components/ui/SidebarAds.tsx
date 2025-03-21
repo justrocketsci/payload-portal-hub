@@ -18,8 +18,7 @@ const SidebarAds = ({ category }: SidebarAdsProps) => {
   }
 
   return (
-    <div className="space-y-4 border-4 border-dashed border-red-400 p-4 rounded-lg">
-      <div className="text-xs text-red-500 font-bold">AD PLACEMENT (SIDEBAR)</div>
+    <div className="space-y-4 p-4 rounded-lg">
       <h3 className="text-sm font-medium text-muted-foreground">Sponsored</h3>
       <div className="space-y-4">
         {ads.map(ad => (
