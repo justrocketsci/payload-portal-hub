@@ -15,6 +15,14 @@ const PayloadDetail = ({ guide }: PayloadDetailProps) => {
   const [downloading, setDownloading] = useState(false);
   const { toast } = useToast();
 
+  // Add error handling for the hero image
+  const [imageError, setImageError] = useState(false);
+  
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
+  // Handle bookmark clicks
   const handleBookmark = () => {
     setBookmarked(!bookmarked);
     toast({
@@ -89,14 +97,20 @@ const PayloadDetail = ({ guide }: PayloadDetailProps) => {
     }
   };
 
+  // Use a default backdrop if the thumbnail is missing or fails to load
+  const backdropImage = imageError 
+    ? 'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-4.0.3&auto=format&fit=crop&w=1480&q=80'
+    : guide.thumbnail;
+
   return (
     <div>
       {/* Hero Section */}
       <div className="relative h-80 sm:h-96 md:h-[500px] overflow-hidden">
         <img 
-          src={guide.thumbnail} 
+          src={backdropImage} 
           alt={guide.title}
           className="w-full h-full object-cover object-center"
+          onError={handleImageError}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
         

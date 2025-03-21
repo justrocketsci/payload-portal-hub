@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Tag, Bookmark } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -11,6 +12,17 @@ interface PayloadCardProps {
 }
 
 const PayloadCard = ({ guide, index = 0 }: PayloadCardProps) => {
+  const [imageError, setImageError] = useState(false);
+  
+  const handleImageError = () => {
+    setImageError(true);
+  };
+  
+  // Use a fallback image if the thumbnail is missing or fails to load
+  const thumbnailImage = imageError 
+    ? 'https://images.unsplash.com/photo-1454789548928-9efd52dc4031?ixlib=rb-4.0.3&auto=format&fit=crop&w=1480&q=80'
+    : guide.thumbnail;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,9 +36,10 @@ const PayloadCard = ({ guide, index = 0 }: PayloadCardProps) => {
     >
       <div className="relative h-48 overflow-hidden">
         <img 
-          src={guide.thumbnail} 
+          src={thumbnailImage} 
           alt={guide.title}
           className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+          onError={handleImageError}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
         
