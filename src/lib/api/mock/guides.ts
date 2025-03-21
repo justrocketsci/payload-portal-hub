@@ -38,7 +38,7 @@ export const mockPayloadGuides: PayloadGuide[] = [
     company: 'SpaceX',
     description: 'This document provides information on Dragon spacecraft systems, interfaces, and requirements for payload developers.',
     thumbnail: '/falcon-heavy.png',
-    category: 'Spacecraft',
+    category: 'Launch Vehicles',
     tags: ['falcon heavy', 'spacex', 'commercial', 'heavy lift'],
     publishedDate: '2023-01-05',
     lastUpdated: '2023-08-18',
