@@ -24,8 +24,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Copy CNAME file to dist
+        run: cp CNAME dist/ || echo "CNAME file already exists in dist/"
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
+          clean: true
