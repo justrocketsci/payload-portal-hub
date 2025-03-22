@@ -3,45 +3,32 @@
 
 A comprehensive guide for rocket payload specifications and launch vehicle compatibility.
 
-## Deployment with GitHub Pages and Custom Domain
+## Deployment with Lovable
 
-### 1. DNS Configuration for payloadportal.dev
+This project is designed to be deployed using Lovable's built-in publishing system:
 
-Configure your domain registrar with the following DNS records:
+1. Click the "Publish" button in the top right of the Lovable editor
+2. Follow the prompts to deploy your application
+3. Your site will be available at a Lovable subdomain (yoursite.lovable.app)
 
-#### A Records
-Point your apex domain (payloadportal.dev) to GitHub Pages IP addresses:
-```
-A   @   185.199.108.153
-A   @   185.199.109.153
-A   @   185.199.110.153
-A   @   185.199.111.153
-```
+### Custom Domain Setup
 
-#### CNAME Record (optional, for www subdomain)
-```
-CNAME   www   justrocketsci.github.io
-```
+To use a custom domain like payloadportal.dev:
 
-⚠️ **Important**: DNS propagation can take up to 48 hours. The GitHub Pages DNS check may show "unsuccessful" until propagation is complete.
+1. Navigate to Project > Settings > Domains in Lovable
+2. Add your custom domain
+3. Follow Lovable's specific DNS configuration instructions:
+   - This typically involves adding CNAME records pointing to your Lovable app
+   - Or using specific A records provided by Lovable (not GitHub Pages IPs)
+4. Wait for DNS propagation (can take up to 48 hours)
+5. Ensure SSL is properly configured for your domain
 
-### 2. GitHub Repository Setup
+⚠️ **Important**: Do not use GitHub Pages A records for Lovable deployments.
 
-1. Ensure the repository has these files:
-   - `CNAME` (in root) containing: payloadportal.dev
-   - `public/CNAME` containing: payloadportal.dev
-   - `.github/workflows/deploy.yml` for automatic deployment
-
-2. Configure GitHub Pages:
-   - Go to repository Settings > Pages
-   - Under "Build and deployment" select "GitHub Actions"
-   - Under "Custom domain" enter: payloadportal.dev
-   - Check "Enforce HTTPS" once certificate is issued
-
-### 3. Development
+## Development
 
 ```sh
-# Clone the repository
+# Clone the repository (if working locally)
 git clone https://github.com/justrocketsci/payload-portal-hub.git
 
 # Navigate to project directory
@@ -61,4 +48,4 @@ npm run dev
 - React
 - shadcn-ui
 - Tailwind CSS
-
+```
