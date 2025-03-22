@@ -21,4 +21,9 @@ export default defineConfig(({ mode }) => ({
     },
   },
   base: './', // This ensures assets are loaded correctly on GitHub Pages
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true
+  }
 }));
