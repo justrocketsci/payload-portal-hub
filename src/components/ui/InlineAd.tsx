@@ -25,7 +25,7 @@ const InlineAd = ({ category, className = '', useRealAds = true }: InlineAdProps
       <div className={`my-6 ${className}`}>
         <div className="text-xs text-muted-foreground mb-2">Sponsored Content</div>
         <GoogleAdSense
-          slot="1234567890" // Replace with your actual ad slot ID for inline ads
+          slot="366493438" // Updated with your actual ad slot ID
           format="auto"
           className="min-h-[120px]"
         />
