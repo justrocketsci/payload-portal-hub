@@ -25,14 +25,14 @@ const SidebarAds = ({ category, className = '', useRealAds = true }: SidebarAdsP
         </h3>
         <div className="space-y-4">
           <GoogleAdSense
-            slot="366493438" // Updated with your actual ad slot ID
+            slot="2351852666" // Updated with your sidebar ad slot ID
             format="auto"
             className="min-h-[250px]"
           />
           
-          {/* Optional second ad - also using the same slot ID for now */}
+          {/* Optional second ad - can use a different slot ID if you create another sidebar ad unit */}
           <GoogleAdSense
-            slot="366493438" // Updated with your actual ad slot ID
+            slot="2351852666" // Using the same sidebar ad slot ID for now
             format="auto"
             className="min-h-[250px]"
           />
