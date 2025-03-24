@@ -34,6 +34,21 @@ export const mockPayloadGuides: PayloadGuide[] = [
   },
   {
     id: '3',
+    title: 'Apex Aries Payload User\'s Guide',
+    company: 'Apex Spacecraft Manufacturing',
+    description: 'This document provides information on Aries spacecraft systems, interfaces, and requirements for payload developers.',
+    thumbnail: '/apex-aries.png',
+    category: 'Spacecraft',
+    tags: ['apex space', 'apex', 'commercial', 'spacecraft'],
+    publishedDate: '2023-01-05',
+    lastUpdated: '2023-08-18',
+    fileUrl: '/assets/guides/apex-aries-guide.pdf',
+    fileType: 'PDF',
+    fileSize: '18.2 MB',
+    externalUrl: 'https://www.apexspace.com/products'
+  },
+  {
+    id: '4',
     title: 'Falcon Heavy Payload User\'s Guide',
     company: 'SpaceX',
     description: 'This document provides information on Dragon spacecraft systems, interfaces, and requirements for payload developers.',
@@ -48,7 +63,7 @@ export const mockPayloadGuides: PayloadGuide[] = [
     externalUrl: 'https://www.spacex.com/vehicles/falcon-heavy/'
   },
   {
-    id: '4',
+    id: '5',
     title: 'Firefly Alpha Payload User\'s Guide',
     company: 'Firefly Aerospace',
     description: 'Detailed guide for the Firefly Alpha launch vehicle with mission planning information, payload integration guidelines, and more.',
@@ -63,7 +78,7 @@ export const mockPayloadGuides: PayloadGuide[] = [
     externalUrl: 'https://fireflyspace.com/alpha/'
   },
   {
-    id: '5',
+    id: '6',
     title: 'ISS Payload Integration Guide',
     company: 'NASA',
     description: 'Comprehensive information for integrating payloads with the International Space Station.',
@@ -78,7 +93,7 @@ export const mockPayloadGuides: PayloadGuide[] = [
     externalUrl: 'https://www.nasa.gov/international-space-station/'
   },
   {
-    id: '6',
+    id: '7',
     title: 'Starship Payload User\'s Guide',
     company: 'SpaceX',
     description: 'Detailed guide for payload integration and mission planning for the Starship launch system.',

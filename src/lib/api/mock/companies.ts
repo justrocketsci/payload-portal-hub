@@ -11,10 +11,10 @@ export const mockCompanies: Company[] = [
   },
   {
     id: '2',
-    name: 'Arianespace',
-    logo: './assets/logos/arianespace-logo.png',
-    website: 'https://www.arianespace.com',
-    description: 'Arianespace is a European company providing launch services for all types of satellites.'
+    name: 'Apex Space',
+    logo: './assets/logos/apex-logo.svg',
+    website: 'https://www.apexspace.com/',
+    description: 'Standard satellite bus platforms from 100 to 500kg, configurable to your mission needs, delivered in weeks.'
   },
   {
     id: '3',
