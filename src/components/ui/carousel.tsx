@@ -2,8 +2,6 @@
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
-  EmblaOptionsType,
-  EmblaPluginType,
 } from "embla-carousel-react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
@@ -15,11 +13,14 @@ type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
 
+// Define custom types for the autoplay options
+type CustomCarouselOptions = CarouselOptions & {
+  autoplay?: boolean
+  delay?: number
+}
+
 type CarouselProps = {
-  opts?: CarouselOptions & {
-    autoplay?: boolean
-    delay?: number
-  }
+  opts?: CustomCarouselOptions
   plugins?: CarouselPlugin
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
