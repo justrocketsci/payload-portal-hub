@@ -9,10 +9,10 @@ export type CarouselOptions = Parameters<typeof useEmblaCarousel>[0]
 export type CarouselPlugin = Parameters<typeof useEmblaCarousel>[1]
 
 // Define custom types for the autoplay options
-export type CustomCarouselOptions = Partial<CarouselOptions> & {
+export type CustomCarouselOptions = {
   autoplay?: boolean
   delay?: number
-}
+} & Partial<CarouselOptions>
 
 export type CarouselProps = {
   opts?: CustomCarouselOptions
@@ -23,12 +23,15 @@ export type CarouselProps = {
 
 export type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
-  api: CarouselApi
+  api: CarouselApi | null
   scrollPrev: () => void
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
 } & CarouselProps
 
-// Add the useEmblaCarousel import declaration to fix the type references
-declare const useEmblaCarousel: UseEmblaCarouselType
+// Declare useEmblaCarousel to fix type references
+declare function useEmblaCarousel(
+  options?: CarouselOptions,
+  plugins?: CarouselPlugin
+): [React.RefObject<HTMLElement>, CarouselApi | null]
