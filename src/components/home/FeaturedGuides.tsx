@@ -67,7 +67,10 @@ const FeaturedGuides = () => {
             <Carousel
               opts={{
                 align: "start",
-                loop: false,
+                loop: true,
+                dragFree: true,
+                autoplay: true,
+                delay: 4000,
               }}
               className="w-full"
             >
