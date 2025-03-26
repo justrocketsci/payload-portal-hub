@@ -1,9 +1,9 @@
 
 import * as React from "react"
-import useEmblaCarousel from "embla-carousel-react"
+import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react"
 import { cn } from "@/lib/utils"
 import { CarouselContext } from "./carousel-context"
-import { CarouselProps } from "./types"
+import type { CarouselProps } from "./types"
 
 const Carousel = React.forwardRef<
   HTMLDivElement,
@@ -47,7 +47,7 @@ const Carousel = React.forwardRef<
       return () => clearInterval(interval)
     }, [api, autoplay, delay])
 
-    const onSelect = React.useCallback((api: typeof useEmblaCarousel[1]) => {
+    const onSelect = React.useCallback((api: UseEmblaCarouselType[1]) => {
       if (!api) {
         return
       }
