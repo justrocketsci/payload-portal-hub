@@ -1,13 +1,20 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import PayloadCard from '@/components/ui/PayloadCard';
 import FadeIn from '@/components/animations/FadeIn';
 import InlineAd from '@/components/ui/InlineAd';
 import { fetchPayloadGuides } from '@/lib/api';
 import { PayloadGuide } from '@/lib/types';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from '@/components/ui/carousel';
 
 const FeaturedGuides = () => {
   const [guides, setGuides] = useState<PayloadGuide[]>([]);
@@ -17,7 +24,7 @@ const FeaturedGuides = () => {
     const getGuides = async () => {
       try {
         const data = await fetchPayloadGuides();
-        setGuides(data.slice(0, 3)); // Just show first 3 on the homepage
+        setGuides(data.slice(0, 6)); // Show more guides (6 instead of 3)
       } catch (error) {
         console.error('Error fetching guides:', error);
       } finally {
@@ -48,18 +55,34 @@ const FeaturedGuides = () => {
           </div>
         </FadeIn>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {isLoading ? (
-            // Skeleton loaders would go here
-            Array.from({ length: 3 }).map((_, i) => (
+        {isLoading ? (
+          // Skeleton loaders
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="glass-card h-[440px] animate-pulse" />
-            ))
-          ) : (
-            guides.map((guide, index) => (
-              <PayloadCard key={guide.id} guide={guide} index={index} />
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: false,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {guides.map((guide, index) => (
+                  <CarouselItem key={guide.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <PayloadCard guide={guide} index={index} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-background/80 backdrop-blur-sm" />
+              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-background/80 backdrop-blur-sm" />
+            </Carousel>
+          </div>
+        )}
         
         <div className="mt-12">
           <InlineAd />
