@@ -1,12 +1,15 @@
 
 import type { UseEmblaCarouselType } from "embla-carousel-react"
+import type * as React from "react"
 
-// Define the API type from the useEmblaCarousel hook return type
-export type CarouselApi = NonNullable<UseEmblaCarouselType[1]>
+// Get the correct types from embla carousel
+export type EmblaCarouselType = NonNullable<UseEmblaCarouselType[1]>
+export type EmblaViewportRefType = UseEmblaCarouselType[0]
+export type CarouselApi = EmblaCarouselType
 
-// Define the options and plugin types
-export type CarouselOptions = Parameters<typeof useEmblaCarousel>[0]
-export type CarouselPlugin = Parameters<typeof useEmblaCarousel>[1]
+// Use the actual type parameters from embla-carousel-react
+export type CarouselOptions = Parameters<UseEmblaCarouselType>[0]
+export type CarouselPlugin = Parameters<UseEmblaCarouselType>[1]
 
 // Define custom types for the autoplay options
 export type CustomCarouselOptions = {
@@ -22,16 +25,10 @@ export type CarouselProps = {
 }
 
 export type CarouselContextProps = {
-  carouselRef: ReturnType<typeof useEmblaCarousel>[0]
+  carouselRef: EmblaViewportRefType
   api: CarouselApi | null
   scrollPrev: () => void
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
 } & CarouselProps
-
-// Declare useEmblaCarousel to fix type references
-declare function useEmblaCarousel(
-  options?: CarouselOptions,
-  plugins?: CarouselPlugin
-): [React.RefObject<HTMLElement>, CarouselApi | null]
