@@ -47,7 +47,7 @@ const Carousel = React.forwardRef<
       return () => clearInterval(interval)
     }, [api, autoplay, delay])
 
-    const onSelect = React.useCallback((api: UseEmblaCarouselType[1]) => {
+    const onSelect = React.useCallback((api: NonNullable<UseEmblaCarouselType[1]>) => {
       if (!api) {
         return
       }
