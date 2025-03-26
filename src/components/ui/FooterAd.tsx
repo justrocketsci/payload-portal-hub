@@ -13,6 +13,7 @@ interface FooterAdProps {
 
 const FooterAd = ({ category, className = '', useRealAds = true }: FooterAdProps) => {
   const [adVisible, setAdVisible] = useState(true);
+  const [isDevEnvironment, setIsDevEnvironment] = useState(false);
   
   // Still load mock ads as fallback
   const { data: ads, isLoading } = useQuery({
@@ -23,6 +24,8 @@ const FooterAd = ({ category, className = '', useRealAds = true }: FooterAdProps
   // Handle ad visibility in development
   useEffect(() => {
     const isDev = process.env.NODE_ENV === 'development';
+    setIsDevEnvironment(isDev);
+    
     if (isDev && useRealAds) {
       console.log('Footer ad loading in development mode');
     }
@@ -32,6 +35,21 @@ const FooterAd = ({ category, className = '', useRealAds = true }: FooterAdProps
     return null;
   }
 
+  // In development, always show mock ads for better visual representation
+  if (isDevEnvironment) {
+    if (isLoading || !ads || ads.length === 0) {
+      return null;
+    }
+    
+    return (
+      <div className={`mt-6 mb-2 mx-auto max-w-3xl ${className}`}>
+        <div className="text-xs text-muted-foreground mb-2">Sponsored (Dev Mode)</div>
+        <AdBanner ad={ads[0]} />
+      </div>
+    );
+  }
+
+  // In production, use real ads if requested
   if (useRealAds) {
     return (
       <div className={`mt-6 mb-2 mx-auto max-w-3xl ${className}`}>

@@ -13,6 +13,7 @@ interface InlineAdProps {
 
 const InlineAd = ({ category, className = '', useRealAds = true }: InlineAdProps) => {
   const [adVisible, setAdVisible] = useState(true);
+  const [isDevEnvironment, setIsDevEnvironment] = useState(false);
 
   // Still load mock ads as fallback
   const { data: ads, isLoading } = useQuery({
@@ -23,6 +24,8 @@ const InlineAd = ({ category, className = '', useRealAds = true }: InlineAdProps
   // Handle ad visibility in development
   useEffect(() => {
     const isDev = process.env.NODE_ENV === 'development';
+    setIsDevEnvironment(isDev);
+    
     if (isDev && useRealAds) {
       console.log('Inline ad loading in development mode');
     }
@@ -32,6 +35,21 @@ const InlineAd = ({ category, className = '', useRealAds = true }: InlineAdProps
     return null;
   }
 
+  // In development, always show mock ads for better visual representation
+  if (isDevEnvironment) {
+    if (isLoading || !ads || ads.length === 0) {
+      return null;
+    }
+    
+    return (
+      <div className={`my-6 ${className}`}>
+        <div className="text-xs text-muted-foreground mb-2">Sponsored Content (Dev Mode)</div>
+        <AdBanner ad={ads[0]} />
+      </div>
+    );
+  }
+
+  // In production, use real ads if requested
   if (useRealAds) {
     return (
       <div className={`my-6 ${className}`}>
