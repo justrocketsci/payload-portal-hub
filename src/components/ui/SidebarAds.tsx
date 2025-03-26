@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchAds } from '@/lib/api';
 import AdBanner from './AdBanner';
 import GoogleAdSense from './GoogleAdSense';
+import { useState, useEffect } from 'react';
 
 interface SidebarAdsProps {
   category?: string;
@@ -11,11 +12,25 @@ interface SidebarAdsProps {
 }
 
 const SidebarAds = ({ category, className = '', useRealAds = true }: SidebarAdsProps) => {
+  const [adsVisible, setAdsVisible] = useState(true);
+  
   // Still load mock ads as fallback
   const { data: ads, isLoading } = useQuery({
     queryKey: ['ads', 'sidebar', category],
     queryFn: () => fetchAds(category, 'sidebar', 2),
   });
+
+  // Handle ad visibility in development
+  useEffect(() => {
+    const isDev = process.env.NODE_ENV === 'development';
+    if (isDev && useRealAds) {
+      console.log('Sidebar ads loading in development mode');
+    }
+  }, [useRealAds]);
+
+  if (!adsVisible) {
+    return null;
+  }
 
   if (useRealAds) {
     return (
@@ -25,16 +40,16 @@ const SidebarAds = ({ category, className = '', useRealAds = true }: SidebarAdsP
         </h3>
         <div className="space-y-4">
           <GoogleAdSense
-            slot="2351852666" // Updated with your sidebar ad slot ID
+            slot="2351852666"
             format="auto"
-            className="min-h-[250px]"
+            className="min-h-[250px] w-full"
           />
           
-          {/* Optional second ad - can use a different slot ID if you create another sidebar ad unit */}
+          {/* Second ad with different slot to avoid conflicts */}
           <GoogleAdSense
-            slot="2351852666" // Using the same sidebar ad slot ID for now
+            slot="2351852666" // Using the same slot ID but could be different
             format="auto"
-            className="min-h-[250px]"
+            className="min-h-[250px] w-full"
           />
         </div>
       </div>

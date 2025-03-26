@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchAds } from '@/lib/api';
 import AdBanner from './AdBanner';
 import GoogleAdSense from './GoogleAdSense';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface InlineAdProps {
   category?: string;
@@ -12,7 +12,7 @@ interface InlineAdProps {
 }
 
 const InlineAd = ({ category, className = '', useRealAds = true }: InlineAdProps) => {
-  const [adLoaded, setAdLoaded] = useState(false);
+  const [adVisible, setAdVisible] = useState(true);
 
   // Still load mock ads as fallback
   const { data: ads, isLoading } = useQuery({
@@ -20,14 +20,26 @@ const InlineAd = ({ category, className = '', useRealAds = true }: InlineAdProps
     queryFn: () => fetchAds(category, 'inline', 1),
   });
 
+  // Handle ad visibility in development
+  useEffect(() => {
+    const isDev = process.env.NODE_ENV === 'development';
+    if (isDev && useRealAds) {
+      console.log('Inline ad loading in development mode');
+    }
+  }, [useRealAds]);
+
+  if (!adVisible) {
+    return null;
+  }
+
   if (useRealAds) {
     return (
       <div className={`my-6 ${className}`}>
         <div className="text-xs text-muted-foreground mb-2">Sponsored Content</div>
         <GoogleAdSense
-          slot="366493438" // Keeping the inline ad slot ID unchanged since you didn't provide a new one
+          slot="366493438"
           format="auto"
-          className="min-h-[120px]"
+          className="min-h-[120px] w-full"
         />
       </div>
     );
