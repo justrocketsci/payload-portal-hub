@@ -55,7 +55,7 @@ const FooterAd = ({ category, className = '', useRealAds = true }: FooterAdProps
       <div className={`mt-6 mb-2 mx-auto max-w-3xl ${className}`}>
         <div className="text-xs text-muted-foreground mb-2">Sponsored</div>
         <GoogleAdSense
-          slot="1038770992" 
+          slot="1038770992" // Updated to match Google's provided slot ID
           format="auto"
           className="min-h-[90px] w-full"
         />

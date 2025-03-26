@@ -36,31 +36,24 @@ const GoogleAdSense = ({
 
         const isDevelopment = process.env.NODE_ENV === 'development';
         
-        // Initialize adsbygoogle if it doesn't exist yet
-        if (!window.adsbygoogle) {
-          window.adsbygoogle = window.adsbygoogle || [];
-          if (isDevelopment) {
-            console.log('Initialized adsbygoogle array in development mode');
-          }
+        // Skip actual ad loading in development
+        if (isDevelopment) {
+          console.log(`Ad would load in production for slot: ${slot}`);
+          return;
         }
 
         const currentAd = adRef.current;
         if (!currentAd) return;
 
-        // Clear existing ads if any
+        // Clear existing content
         if (currentAd.innerHTML) {
           currentAd.innerHTML = '';
         }
 
-        // Create the ad
+        // Create the ad ins element
         const adElement = document.createElement('ins');
         adElement.className = 'adsbygoogle';
         adElement.style.display = 'block';
-        adElement.style.width = '100%';
-        adElement.style.height = format === 'auto' ? 'auto' : '100%';
-        adElement.style.minHeight = '90px';
-        
-        // Set attributes
         adElement.setAttribute('data-ad-client', 'ca-pub-8376822577360166');
         adElement.setAttribute('data-ad-slot', slot);
         
@@ -71,41 +64,64 @@ const GoogleAdSense = ({
           adElement.setAttribute('data-ad-format', format);
         }
         
-        // Append the ad to our container
+        // Append the ins element
         currentAd.appendChild(adElement);
+
+        // Create and append the script that pushes the ad
+        const pushScript = document.createElement('script');
+        pushScript.textContent = '(adsbygoogle = window.adsbygoogle || []).push({});';
+        currentAd.appendChild(pushScript);
         
-        // Push the command to render ad with error handling
-        try {
-          // Use a timeout to prevent blocking the UI
-          setTimeout(() => {
-            if (isMounted) {
-              try {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-                console.log(`Ad request sent for slot: ${slot}`);
-                setAdLoaded(true);
-              } catch (pushError) {
-                console.error('Error pushing ad:', pushError);
-                setAdError(true);
-              }
-            }
-          }, 0);
-        } catch (pushError) {
-          console.error('Error pushing ad:', pushError);
-          if (isMounted) setAdError(true);
-        }
+        // Consider ad loaded after a small delay
+        setTimeout(() => {
+          if (isMounted) {
+            setAdLoaded(true);
+            console.log(`Ad loaded for slot: ${slot}`);
+          }
+        }, 1000);
       } catch (error) {
         console.error('Error loading AdSense ad:', error);
-        if (isMounted) setAdError(true);
+        if (isMounted) {
+          setAdError(true);
+          toast({
+            title: "Ad Error",
+            description: "There was an issue loading the advertisement",
+            variant: "destructive",
+          });
+        }
       }
     };
 
-    loadAd();
+    // Ensure the AdSense script is loaded before attempting to load ads
+    if (typeof window !== 'undefined') {
+      // Check if the script already exists
+      if (!document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]')) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8376822577360166';
+        script.crossOrigin = 'anonymous';
+        document.head.appendChild(script);
+        
+        script.onload = () => {
+          console.log('AdSense script loaded successfully');
+          loadAd();
+        };
+        
+        script.onerror = () => {
+          console.error('Failed to load AdSense script');
+          setAdError(true);
+        };
+      } else {
+        // Script already exists, load the ad
+        loadAd();
+      }
+    }
     
     // Cleanup function
     return () => {
       isMounted = false;
     };
-  }, [slot, format, responsive]);
+  }, [slot, format, responsive, toast]);
 
   // Show fallback or placeholder if ad fails to load or we're in development
   if (adError || process.env.NODE_ENV === 'development') {
