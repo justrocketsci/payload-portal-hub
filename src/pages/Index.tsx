@@ -154,12 +154,12 @@ const Index = () => {
       </section>
       
       {/* Companies Section with sidebar ad */}
-      <section className="py-16">
+      <section className="py-10">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-3">
               <FadeIn>
-                <div className="text-center mb-12">
+                <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold mb-4">Featuring Top Space Companies</h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
                     We aggregate payload guides from the most innovative companies in the space industry
@@ -167,14 +167,14 @@ const Index = () => {
                 </div>
               </FadeIn>
               
-              <div className="flex flex-wrap justify-center items-center gap-12">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
                 {mockCompanies.map((company, index) => (
                   <FadeIn key={company.id} delay={index * 0.1}>
-                    <div className="glass-card p-4 h-24 w-40 flex items-center justify-center">
+                    <div className="glass-card p-4 h-24 flex items-center justify-center">
                       <img 
                         src={company.logo} 
                         alt={company.name}
-                        className="max-h-12 max-w-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                        className="max-h-10 max-w-full grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                       />
                     </div>
                   </FadeIn>
