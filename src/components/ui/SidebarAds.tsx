@@ -18,7 +18,7 @@ const SidebarAds = ({ category, className = '', useRealAds = true }: SidebarAdsP
   // Still load mock ads as fallback
   const { data: ads, isLoading } = useQuery({
     queryKey: ['ads', 'sidebar', category],
-    queryFn: () => fetchAds(category, 'sidebar', 2),
+    queryFn: () => fetchAds(category, 'sidebar', 1), // Changed to only request 1 ad
   });
 
   // Handle ad visibility in development
@@ -47,9 +47,8 @@ const SidebarAds = ({ category, className = '', useRealAds = true }: SidebarAdsP
           Sponsored (Dev Mode)
         </h3>
         <div className="space-y-4">
-          {ads.map(ad => (
-            <AdBanner key={ad.id} ad={ad} />
-          ))}
+          {/* Only show the first ad */}
+          {ads.length > 0 && <AdBanner key={ads[0].id} ad={ads[0]} />}
         </div>
       </div>
     );
@@ -63,17 +62,11 @@ const SidebarAds = ({ category, className = '', useRealAds = true }: SidebarAdsP
           Sponsored
         </h3>
         <div className="space-y-4">
+          {/* Only show one ad unit */}
           <GoogleAdSense
-            slot="2351852666" // Changed back Slot ID to maktch Google Ad Sense
+            slot="2351852666"
             format="auto"
-            className="min-h-[250px] w-full"
-          />
-          
-          {/* Second ad with different slot */}
-          <GoogleAdSense
-            slot="2351852666" // Changed back Slot ID
-            format="auto"
-            className="min-h-[250px] w-full"
+            className="min-h-[450px] w-full" // Increased height for a single more prominent ad
           />
         </div>
       </div>
@@ -91,9 +84,8 @@ const SidebarAds = ({ category, className = '', useRealAds = true }: SidebarAdsP
         Sponsored
       </h3>
       <div className="space-y-4">
-        {ads.map(ad => (
-          <AdBanner key={ad.id} ad={ad} />
-        ))}
+        {/* Only show the first ad */}
+        {ads.length > 0 && <AdBanner key={ads[0].id} ad={ads[0]} />}
       </div>
     </div>
   );
