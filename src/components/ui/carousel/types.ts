@@ -1,15 +1,15 @@
 
-import type { UseEmblaCarouselType } from "embla-carousel-react"
 import type * as React from "react"
+import useEmblaCarousel from "embla-carousel-react"
 
 // Get the correct types from embla carousel
-export type EmblaCarouselType = NonNullable<UseEmblaCarouselType[1]>
-export type EmblaViewportRefType = UseEmblaCarouselType[0]
-export type CarouselApi = EmblaCarouselType
+export type EmblaCarouselType = ReturnType<typeof useEmblaCarousel>[1]
+export type EmblaViewportRefType = ReturnType<typeof useEmblaCarousel>[0]
+export type CarouselApi = NonNullable<EmblaCarouselType>
 
 // Use the actual type parameters from embla-carousel-react
-export type CarouselOptions = Parameters<UseEmblaCarouselType>[0]
-export type CarouselPlugin = Parameters<UseEmblaCarouselType>[1]
+export type CarouselOptions = Parameters<typeof useEmblaCarousel>[0]
+export type CarouselPlugin = Parameters<typeof useEmblaCarousel>[1]
 
 // Define custom types for the autoplay options
 export type CustomCarouselOptions = {
@@ -26,7 +26,7 @@ export type CarouselProps = {
 
 export type CarouselContextProps = {
   carouselRef: EmblaViewportRefType
-  api: CarouselApi | null
+  api: EmblaCarouselType
   scrollPrev: () => void
   scrollNext: () => void
   canScrollPrev: boolean
