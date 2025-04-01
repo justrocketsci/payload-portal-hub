@@ -108,7 +108,7 @@ export const mockPayloadGuides: PayloadGuide[] = [
     externalUrl: 'https://www.spacex.com/vehicles/starship/'
   },
   {
-    id: '',
+    id: '8',
     title: 'Vulcan Payload User\'s Guide',
     company: 'United Launch Alliance',
     description: 'Detailed guide for payload integration and mission planning for the Vulcan launch system.',
