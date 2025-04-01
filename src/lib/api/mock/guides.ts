@@ -105,6 +105,21 @@ export const mockPayloadGuides: PayloadGuide[] = [
     fileUrl: 'https://www.spacex.com/media/starship_users_guide_v1.pdf',
     fileType: 'PDF',
     fileSize: '32.1 MB',
-    externalUrl: 'https://www.spacex.com/vehicles/starship//'
+    externalUrl: 'https://www.spacex.com/vehicles/starship/'
+  },
+  {
+    id: '',
+    title: 'Vulcan Payload User\'s Guide',
+    company: 'United Launch Alliance',
+    description: 'Detailed guide for payload integration and mission planning for the Vulcan launch system.',
+    thumbnail: '/assets/thumbnails/vulcan.jpg',
+    category: 'Launch Vehicles', 
+    tags: ['vulcan', 'ula', 'united launch alliance', 'interplanetary', 'heavy lift'],
+    publishedDate: '2023-02-28',
+    lastUpdated: '2023-05-15',
+    fileUrl: 'https://www.ulalaunch.com/docs/default-source/rockets/2023_vulcan_user_guide.pdf',
+    fileType: 'PDF',
+    fileSize: '32.1 MB',
+    externalUrl: 'https://www.ulalaunch.com/rockets/vulcan-centaur'
   }
 ];
