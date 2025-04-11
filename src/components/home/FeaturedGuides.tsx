@@ -24,7 +24,7 @@ const FeaturedGuides = () => {
     const getGuides = async () => {
       try {
         const data = await fetchPayloadGuides();
-        setGuides(data.slice(0, 6)); // Show more guides (6 instead of 3)
+        setGuides(data); // Show all guides, not just the first 6
       } catch (error) {
         console.error('Error fetching guides:', error);
       } finally {
